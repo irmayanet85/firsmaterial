@@ -1,0 +1,60 @@
+
+<h1>Profile</h1>
+<div class="container">
+  <app-card-edit-img [refobj] = "user"></app-card-edit-img>
+ 
+    <mat-card class="card-edit">
+        <mat-card-header>
+            <mat-card-title>User Data</mat-card-title>
+            <mat-card-subtitle>Modify your data, if you wish.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content> 
+          <form [formGroup]="fGroupEditDataUser" class="formedit" (submit)="updateNameEmail()">
+        
+
+             <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput [formControl]="name" placeholder="Name and Last Name" >
+                <mat-error *ngIf="name.hasError('minlength') && !name.hasError('required')">
+                  Please enter a valid Name and Last name.
+                </mat-error>
+                <mat-error *ngIf="name.hasError('required')">
+                  Name and Last Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input type="email" matInput [formControl]="email"  placeholder="Ex. pat@example.com">
+                  <mat-error *ngIf="email.hasError('pattern') && !email.hasError('required')">
+                    Please enter a valid email address
+                  </mat-error>
+                  <mat-error *ngIf="email.hasError('required')">
+                    Email is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+             
+    
+               
+                  <mat-error *ngIf="error">
+                    <strong>*</strong> Atencion !! <strong> {{error}}</strong>
+                  </mat-error>
+    
+                
+                  <button id= "btnRegister" mat-raised-button color="primary" focus  [disabled]="disabledbtn" class="full-width">
+                      Update your data
+                 </button>
+    
+                    
+                </form>
+              
+    
+          
+      </mat-card-content>
+      
+    </mat-card>
+    
+   
+  
+</div>
+  

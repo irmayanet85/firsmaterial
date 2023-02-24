@@ -2,13 +2,32 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularmaterialModule } from './angularmaterial/angularmaterial.module';
+import { SharesModule } from './shares/shares.module';
+import { RouterModule } from '@angular/router';
+import { LayoutModule } from '@angular/cdk/layout';
+import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { PagesModule } from './pages/pages.module';
+import { AuthModule } from './auth/auth.module';
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NopagefoundComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AngularmaterialModule,
+    PagesModule,
+    RouterModule,
+    AuthModule,
+    LayoutModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

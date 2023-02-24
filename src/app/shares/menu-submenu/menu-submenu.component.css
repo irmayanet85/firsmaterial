@@ -1,0 +1,49 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .custom-toolbar {
+    box-shadow: 0 2px 8px 0 rgb(174 186 208 / 27%);
+    height: 100%;
+
+  }
+  .menu-icon {
+
+    font-size: 1.5em;
+    height: max-content;
+    width: max-content;
+  }
+
+  .menu-user-contact{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5px;
+    align-items: center;
+    width: 250px;
+    margin-bottom: 5%;
+  }
+  .smoll-img {
+    width: 50px;
+    height: 50px;
+    
+  }
+  .smoll-img img {
+    border-radius: 50%;
+    padding: 20%;
+    height: 100%;
+    width: 100%;
+    /* border-radius: 5px; */
+  }
+  #menu {
+    width: 400px;
+  }
+  .logo {
+    margin-left: 1em;
+    width: 3em;
+    height: 3em;
+
+  }
+  .logo img {
+  max-width: 100%;
+  }
+  

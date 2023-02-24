@@ -1,0 +1,17 @@
+.avatar {
+    border-radius: 100%;
+    width: 75px;
+}
+
+.cursor {
+    cursor: pointer;
+}
+.backgroudModal {
+    background-color: rgba(0, 0, 0, 0.5);
+     /* left: 0pt;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 9999;  */
+}

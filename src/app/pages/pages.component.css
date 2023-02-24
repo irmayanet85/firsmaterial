@@ -1,0 +1,101 @@
+.full{
+  display: block;
+
+}
+
+
+  @media screen and (min-width: 700px) {
+    .container {
+        display: grid;
+        grid-template-columns: 3fr;
+        column-gap: 20px;
+
+    }
+    
+}
+ @media screen and (min-width: 1285px) {
+        .container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            column-gap: 20px;
+        }
+ } 
+
+header {
+    width: 100%;
+    height: 100px;
+    top: 0;
+    background: #673ab7;
+  
+
+}
+footer {
+  height: 40px;
+  width: 100%;
+  box-shadow: 0 2px 8px 0 rgb(174 186 208 / 27%);
+  position: absolute;
+  bottom: 0;
+  background: #673ab7;
+
+  
+}
+
+
+.example-container {
+  width: 100%;
+  height: 750px;
+  margin-left: 0;
+  /* background: red; */
+  
+}
+mat-drawer-content {
+  padding: 12px; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  /* background: blue; */
+}
+
+
+mat-drawer {
+  height: 100%;
+  width: 300px;
+  overflow-x: auto; 
+  /* background: green; */
+}
+
+app-notice {
+ 
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    gap: 5px;
+    
+
+}
+
+.main {
+  margin-bottom: 20px;
+}
+
+
+/* 
+.stylescroll::-webkit-scrollbar {
+  width: 1px;
+}
+
+
+.stylescroll::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+
+.stylescroll::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+.stylescroll::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+} */
+

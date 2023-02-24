@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;  
+    
+
+}
+
+.newstyle {
+    font-family: 'Tangerine', serif;
+    font-size: 4rem;
+}
+
+
+/* login  and register */
+.example-form-btn button{
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  .example-form-btn button {
+    font-size: large;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }

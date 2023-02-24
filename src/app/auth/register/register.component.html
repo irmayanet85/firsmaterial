@@ -1,0 +1,101 @@
+<div class="header">
+  <div class="logo">
+    <img src="../../../assets/img/logo.png" alt="">
+  </div>
+
+</div>
+<div class="container">
+  <div class="left">
+    <h1></h1>
+  </div>
+  
+  <div class="login">
+      
+
+      <h1> Register user</h1>
+      
+      <div class="data">
+          
+        <form [formGroup]="fGroupRegister" class="example-form" (submit)="register()">
+
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input type="text" matInput [formControl]="name" placeholder="Name and Last Name">
+              <mat-error *ngIf="name.hasError('minlength') && !name.hasError('required')">
+                Please enter a valid Name and Last name.
+              </mat-error>
+              <mat-error *ngIf="name.hasError('required')">
+                Name and Last Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [formControl]="email" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="email.hasError('pattern') && !email.hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="email.hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+           
+  
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Enter your password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" (change)="prueba()">
+                  <mat-error *ngIf="password.hasError('forbiddenName')">
+                    Password must to be  <strong>stron password</strong>
+                  </mat-error>
+                  <mat-error *ngIf="password.hasError('required')">
+                      Password is <strong>required</strong>
+                  </mat-error>
+  
+                  <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+              </mat-form-field>
+  
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label class="label">Repit your password</mat-label>
+                  <input matInput [type]="hide2 ? 'password' : 'text'" [formControl]="password2">
+                  <mat-error *ngIf="password2.hasError('notEqual')">
+                      Passwords not <strong>match</strong>
+                  </mat-error>
+                  <mat-error *ngIf="password2.hasError('required')">
+                    Must repit your Password <strong>Password</strong>
+                </mat-error>
+                  <button  mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+              </mat-form-field>
+  
+                <mat-error *ngIf="error">
+                  <strong>*</strong> Atencion !! <strong> {{error}}</strong>
+                </mat-error>
+  
+              
+  
+                  <button id= "btnRegister" mat-raised-button color="primary" focus  [disabled]="disabledbtn">
+                          Register me
+                  </button>
+            
+  
+              <div>
+                  <h3>Do you have an account? <strong>  <a href="" routerLink="/login"> Sigin</a> </strong>   </h3>  
+              </div>
+  
+        </form>
+  
+  
+      </div>
+  
+  </div>
+  <!-- <div class="right">
+    <h1>holita</h1>
+  </div> -->
+  
+</div>
+<div class="footer"></div>
+    
+   
