@@ -1,23 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-//import { AdminGuard } from '../guard/admin.guard';
-//import { AuthGuard } from '../guard/auth.guard';
-//import { PendingChangesGuardGuard } from '../guard/pending-changes-guard.guard';
-//import { AccountSettingComponent } from './account-setting/account-setting.component';
-//import { DashboardComponent } from './dashboard/dashboard.component';
-//import { Grafica1Component } from './grafica1/grafica1.component';
-import { DoctorsComponent } from './maintenance/doctors/doctors.component';
-import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
-import { UsersComponent } from './maintenance/users/users.component';
-import { PagesComponent } from './pages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 import { AuthGuard } from '../guard/auth.guard';
-import { AddEditDoctorsComponent } from './maintenance/edit/add-edit-doctors/add-edit-doctors.component';
-import { AddEditHospitalComponent } from './maintenance/edit/add-edit-hospital/add-edit-hospital.component';
-import { AddEditUserComponent } from './maintenance/edit/add-edit-user/add-edit-user.component';
+import { AddEditUserComponent,AddEditHospitalComponent, AddEditDoctorsComponent, DoctorsComponent, HospitalsComponent, UsersComponent} from './maintenance';
+
 
 const childRoutes : Routes = [
   { path: '', component: DashboardComponent , data: {title: 'Dashboard'}},

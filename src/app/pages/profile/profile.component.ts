@@ -3,19 +3,10 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { Observable, of } from 'rxjs';
 import { MyErrorStateMatcher } from 'src/app/auth/login/login.component';
 import { Usuario } from 'src/app/models/user.models';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { ProfileService } from 'src/app/services/auth/profile.service';
 import Swal from 'sweetalert2';
-//import { ComponentCanDeactivate } from 'src/app/guard/pending-changes-guard.guard';
-
-// import { Usuario } from 'src/app/models/user.models';
-// import { AuthService } from 'src/app/servicios/auth/auth.service';
-// import { ImgService } from 'src/app/servicios/img/img.service';
-// import { ProfileService } from 'src/app/servicios/user/profile.service';
 import { environment } from 'src/environments/environment';
-import { ImgService } from 'src/app/services/img/img.service';
+import { AuthService, ProfileService, ImgService } from 'src/app/services';
 
-//import { Item } from '../../servicios/tools/sidebar.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,12 +17,7 @@ export class ProfileComponent
 
 {
   
-  public user! : Usuario;
-  // public img! : File;
-  // public imgTemp! : any;
-  // private formSubmited = false;
-  // private showfieldPassword = false;
-  
+  public user! : Usuario;  
   email = new FormControl('', [Validators.required, Validators.pattern(environment.emailPattern)]);
   name = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
@@ -47,31 +33,6 @@ export class ProfileComponent
 
   }
   
-  
-
-  
-  // onFileChange(event:any)
-  // {
-  //   if (event.target.files.length > 0) {
-  //   const file:File = event.target.files[0];
-  //   this.img = file;
-
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(this.img);
-  //   reader.onloadend = () => {
-  //     console.log(reader.result);
-  //     this.imgTemp = reader.result
-  //   }
-  //   }
-    
-  // }
-
-  // enableButtonUpload(){
-  //   if (this.img) {
-  //     return 'enabled';
-  //   } else return 'disabled';
-    
-  // }
 
   updateNameEmail(){
     console.log('actualizando')
@@ -106,47 +67,6 @@ export class ProfileComponent
     }
     
   } 
-  
-
-  // updateImg(){
-  //   if (this.img){
-  //     // console.log('img valido');
-  //     // console.log(this.img);
-  //     this.imgserv.uploadImg(
-  //       'user',
-  //       this.user.id! ,
-  //       this.img)
-  //     .subscribe(() => {
-  //       Swal.fire({
-  //         title: 'Exito!',
-  //         text: 'La imagen fue actualizado correctamente',
-  //         icon: 'success',
-  //         confirmButtonText: 'continuar'
-  //       })
-  //     },
-  //     (error)=> {
-  //       if (error.error.msg){
-  
-  //         Swal.fire({
-  //           title: 'Atencion!',
-  //           text: error.error.msg,
-  //           icon: 'warning',
-  //           confirmButtonText: 'ok'
-  //         })
-  //       }
-  //       else {
-  //         console.log(error);
-  //         Swal.fire({
-  //           title: 'Error!',
-  //           text: 'Upss ocurrio un error inesperado',
-  //           icon: 'error',
-  //           confirmButtonText: 'ok'
-  //         })
-  //       }
-  //     })
-  //   }
-    
-  // } 
   
 
   

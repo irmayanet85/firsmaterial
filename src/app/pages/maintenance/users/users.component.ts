@@ -2,11 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { catchError, merge, startWith, switchMap, of as observableOf, map } from 'rxjs';
-import { Doctor } from 'src/app/models/doctor.models';
+import { catchError, startWith, switchMap, of as observableOf, map } from 'rxjs';
 import { Usuario } from 'src/app/models/user.models';
-import { GestionDoctorService } from 'src/app/services/doctor/gestion-doctor.service';
-import { GestionUsuariosService } from 'src/app/services/user/gestion-usuarios.service';
+import { GestionUsuariosService } from 'src/app/services';
 
 @Component({
   selector: 'app-users',

@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Usuario } from 'src/app/models/user.models';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { ProfileService } from 'src/app/services/auth/profile.service';
-import { ImgService } from 'src/app/services/img/img.service';
+import { AuthService, ImgService, ProfileService } from 'src/app/services';
 import Swal from 'sweetalert2';
 
 @Component({
