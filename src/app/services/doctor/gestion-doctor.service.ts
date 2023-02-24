@@ -4,9 +4,8 @@ import { map, Observable } from 'rxjs';
 import { ListDoctors } from 'src/app/interfaces/searchGlobal';
 
 import { Doctor } from 'src/app/models/doctor.models';
-import { Usuario } from 'src/app/models/user.models';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '../auth/auth.service';
+
 
 
 

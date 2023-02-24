@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Usuario } from 'src/app/models/user.models';
 import { AuthService } from 'src/app/services';
 
@@ -10,13 +10,16 @@ import { AuthService } from 'src/app/services';
 })
 export class MenuComponent {
   @Output() newclick = new EventEmitter<string>();
-  public user!: Usuario;
+  @Input() public user!: Usuario;
+  //public user!: Usuario;
 
-  constructor (private authServ: AuthService){
-    if (this.authServ){
+  constructor (
+    //private authServ: AuthService
+    ){
+    // if (this.authServ){
 
-      this.user = this.authServ.user;
-    }
+    //   this.user = this.authServ.user;
+    // }
 
   }
 
