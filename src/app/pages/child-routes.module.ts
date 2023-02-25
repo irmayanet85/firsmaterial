@@ -12,12 +12,12 @@ const childRoutes : Routes = [
   { path: '', component: DashboardComponent , data: {title: 'Dashboard'}},
   { path: 'account', component: AccountSettingComponent , data: {title: 'Account setting'}},
   { path: 'profile', component: ProfileComponent, canActivate : [AuthGuard], data: {title: 'Perfil'}},
-  { path: 'users', component: UsersComponent , data: {title: 'Gestion Usuarios'}},
-  { path: 'hospitals', component: HospitalsComponent ,  data: {title: 'Gestion de Hospitales'}},
-  { path: 'doctors', component: DoctorsComponent ,  data: {title: 'Gestion de doctores'}},
-  { path: 'edit-user', component:  AddEditUserComponent, data: {title: 'Edit Usuarios'}},
-  { path: 'edit-hospital', component: AddEditHospitalComponent ,  data: {title: 'Edit Hospitales'}},
-  { path: 'edit-doctor/:id', component: AddEditDoctorsComponent ,  data: {title: 'Edit Doctores'}},
+  // { path: 'users', component: UsersComponent , data: {title: 'Gestion Usuarios'}},
+  // { path: 'hospitals', component: HospitalsComponent ,  data: {title: 'Gestion de Hospitales'}},
+  // { path: 'doctors', component: DoctorsComponent ,  data: {title: 'Gestion de doctores'}},
+  // { path: 'edit-user', component:  AddEditUserComponent, data: {title: 'Edit Usuarios'}},
+  // { path: 'edit-hospital', component: AddEditHospitalComponent ,  data: {title: 'Edit Hospitales'}},
+  // { path: 'edit-doctor/:id', component: AddEditDoctorsComponent ,  data: {title: 'Edit Doctores'}},
 ]
 
 

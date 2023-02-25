@@ -21,8 +21,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class LoginComponent {
 
   hide = true;
-  emailFormControl = new FormControl('irma85@nauta.cu', [Validators.required, Validators.email]);
-  passwordFormControl = new FormControl('123456', [Validators.required]);
+  emailFormControl = new FormControl('irmayanet86@nauta.cu', [Validators.required, Validators.email]);
+  passwordFormControl = new FormControl('AmriTenay*85', [Validators.required]);
   fGrouplogin = new FormGroup([this.emailFormControl,this.passwordFormControl]);
 
   matcher = new MyErrorStateMatcher();

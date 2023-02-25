@@ -7,8 +7,13 @@
   </div>
   <span class="newstyle">Hospital Center</span>
   <span class="example-spacer"></span>
+   <label *ngIf="email" >{{email}} : {{rol}}
+    
+  </label> 
+    
+   
 
-  <app-menu-submenu  ></app-menu-submenu>
+  <app-menu-submenu (data)="setdatauser($event)"></app-menu-submenu>
 
   
 

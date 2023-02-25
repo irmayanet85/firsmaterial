@@ -16,25 +16,6 @@ export class ProfileService {
     this.user = servauth.user;
    }
 
-  UpdateUser(name : string, email: string){
-    console.log ('data', name, email);
-    const urlconexion = `${this.url}/usuarios/${this.user.id}`;
-    const token = localStorage.getItem('token');
-    let header= new HttpHeaders();
-    header = header.set('x-token', token!);
   
-    return this.httpclient.put(
-      urlconexion,
-      {"name" : name,
-        "email" : email },
-      {headers: header})
-      .pipe (
-        tap( result => {
-          this.servauth.user.name = name;
-          this.servauth.user.email = email;
-        })
-      );
-    
-  }
   
 }

@@ -2,6 +2,8 @@
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {Component} from '@angular/core';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
+import { Usuario } from 'src/app/models/user.models';
+import { AuthService } from '../../services/auth/auth.service';
 
 
 
@@ -49,15 +51,15 @@ const TREE_DATA: MenuNode[] = [
         children : [
           {
             name: "Hospitales", 
-            link: "./hospitals" 
+            link: "/admin/hospitals" 
           },
           {
             name: "Medicos", 
-            link: "./doctors" 
+            link: "/admin//doctors" 
           },
            {
              name: "Usuarios", 
-             link: "./users" 
+             link: "/admin/users" 
            }
         ]
        },
@@ -73,10 +75,12 @@ const TREE_DATA: MenuNode[] = [
 })
 
 export class SidebarComponent {
+  public user! : Usuario;
   treeControl = new NestedTreeControl<MenuNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<MenuNode>();
 
-  constructor() {
+  constructor(private serv : AuthService) {
+    this.user = this.serv.user;
     this.dataSource.data = TREE_DATA;
     //console.log(TREE_DATA);
   }

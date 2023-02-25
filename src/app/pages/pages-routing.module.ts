@@ -9,7 +9,15 @@ const routes: Routes = [
     //canLoad:[AuthGuard],
     //canActivate: [AuthGuard],
     loadChildren:()=> import('./child-routes.module').then(m => m.ChildRoutesModule)
-  }
+  }, 
+  { 
+    path: 'admin', 
+    component: PagesComponent,
+    //canLoad:[AuthGuard],
+    //canActivate: [AuthGuard],
+    loadChildren:()=> import('./child-routes-admin.module').then(m => m.ChildRoutesAdminModule)
+  }, 
+
 ];
 
 @NgModule({

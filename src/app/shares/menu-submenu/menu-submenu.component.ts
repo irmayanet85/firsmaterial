@@ -1,36 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Usuario } from 'src/app/models/user.models';
 import { AuthService } from 'src/app/services';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-submenu',
   templateUrl: './menu-submenu.component.html',
   styleUrls: ['./menu-submenu.component.css']
 })
-export class MenuSubmenuComponent implements OnInit {
+export class MenuSubmenuComponent  {
   public user!: Usuario;
-  public active : boolean = false;
-  constructor (private servAuth: AuthService){
-    servAuth.ValidateAuthAndrenewToken().subscribe( (result) => {
-      if (result == true) {
-        this.user = servAuth.user;
-        this.active = true;
-      }
-      else{
-        this.active = false;
-      }
-      //console.log('result', result);
-    
-    });
-  }
+  public login : boolean = false;
+  @Output() data = new EventEmitter<{email?:string, rol?: string}>();
+  
+
+  constructor (private authServ: AuthService, private route: Router){
+    this.authServ.ValidateAuthAndrenewToken().subscribe(result=> {
+      this.user = authServ.user;
+      this.login = result;
+      this.data.emit({email: this.user.email, rol: this.user.rol!});
+
+    })
+
+    authServ.activeuser.subscribe(active => {
+      this.login = active;
+      this.data.emit({email: this.user.email, rol: this.user.rol!});
+    })
+      
+
+    if (authServ.user){
+      authServ.datauser.subscribe(user => {
+      this.user = user;
+      this.data.emit({email: this.user.email, rol: this.user.rol!});
+      })
+    }
+    }
+   
+  
+  
 
   logout(){
-    this.servAuth.logout();
-    this.active=false;
+    this.authServ.logout();
+    //this.login = false;
     console.log("cerrando session");
+    this.route.navigateByUrl('/dashboard');
   }
-  ngOnInit(): void {
-    //console.log(this.user);
-  }
+ 
 
 }

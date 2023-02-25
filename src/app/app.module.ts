@@ -7,16 +7,18 @@ import { AngularmaterialModule } from './angularmaterial/angularmaterial.module'
 import { SharesModule } from './shares/shares.module';
 import { RouterModule } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
-import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { NopagefoundComponent } from './common-pages/nopagefound/nopagefound.component';
 import { PagesModule } from './pages/pages.module';
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
+import { UnauthorizedComponent } from './common-pages/unauthorized/unauthorized.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
