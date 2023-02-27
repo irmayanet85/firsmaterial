@@ -12,18 +12,25 @@ export class MenuComponent {
   @Output() newclick = new EventEmitter<string>();
   email: string = '';
   rol: string = '';
+  active : boolean = false;
  
 
-  constructor (){}
+  constructor (private authServ: AuthService){
+
+    this.authServ.session.subscribe(data=> {
+      this.email = data.dataUser.email;
+      this.rol = data.dataUser.rol!;
+      this.active = data.status;
+      console.log('session menu');
+    })
+  }
 
   toggle(){
     this.newclick.emit('click');
     //console.log('me dieron click');
 
   }
-  setdatauser(data: any) {
-    this.email = data.email;
-    this.rol = data.rol;
-  }
+
+ 
 
 }

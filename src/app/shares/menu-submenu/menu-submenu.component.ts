@@ -11,30 +11,18 @@ import { Route, Router } from '@angular/router';
 export class MenuSubmenuComponent  {
   public user!: Usuario;
   public login : boolean = false;
-  @Output() data = new EventEmitter<{email?:string, rol?: string}>();
+  
   
 
   constructor (private authServ: AuthService, private route: Router){
-    this.authServ.ValidateAuthAndrenewToken().subscribe(result=> {
-      this.user = authServ.user;
-      this.login = result;
-      this.data.emit({email: this.user.email, rol: this.user.rol!});
-
+    this.authServ.ValidateAuthAndrenewToken().subscribe();
+    this.authServ.session.subscribe(data=> {
+      this.user = data.dataUser;
+      this.login = data.status;
+      console.log('session menusubmenu');
     })
 
-    authServ.activeuser.subscribe(active => {
-      this.login = active;
-      this.data.emit({email: this.user.email, rol: this.user.rol!});
-    })
-      
-
-    if (authServ.user){
-      authServ.datauser.subscribe(user => {
-      this.user = user;
-      this.data.emit({email: this.user.email, rol: this.user.rol!});
-      })
-    }
-    }
+  }
    
   
   

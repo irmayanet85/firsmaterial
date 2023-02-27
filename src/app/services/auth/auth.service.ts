@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
+import { ISession } from 'src/app/interfaces/session.interface';
 import { Usuario } from 'src/app/models/user.models';
 import { environment } from '../../../environments/environment';
 
@@ -8,9 +9,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-
-  datauser = new EventEmitter<Usuario>();
-  activeuser = new EventEmitter<boolean>(false); 
+  session = new EventEmitter<ISession>();
   private usuario!: Usuario;
   private url:string = environment.urlApi;
 
@@ -20,9 +19,12 @@ export class AuthService {
   {
     return this.usuario;
   }
-  emitChange(user:Usuario) {
-    
-  }
+  
+
+   emitsession(status: boolean){
+    const session: ISession = {dataUser: this.usuario, status: status }
+    this.session.emit(session);
+   }
 
   UpdateUser(name : string, email: string){
     console.log ('data', name, email);
@@ -33,14 +35,14 @@ export class AuthService {
   
     return this.httpclient.put(
       urlconexion,
-      {"name" : name,
-        "email" : email },
+      {"name" : name,"email" : email },
       {headers: header})
       .pipe (
         tap( result => {
           this.usuario.name = name;
           this.usuario.email = email;
-          this.datauser.emit(this.usuario);
+          this.emitsession(true);
+          
           
         })
       );
@@ -66,12 +68,11 @@ export class AuthService {
           const { name,email, img, rol, google, id } = result.user;
           this.usuario = new Usuario (name, email, '', img, rol, google, id);
           localStorage.setItem('token', result.token);
-          this.activeuser.emit(true);
+          this.emitsession(true);
         }),
         map(result => true),
         catchError(error => {
-          this.datauser.emit(this.usuario);
-          this.activeuser.emit(false);
+          this.emitsession(false);
           return of(false)
         })
       );
@@ -89,8 +90,7 @@ export class AuthService {
         const { name,email, img, rol, id } = result;
         this.usuario = new Usuario (name, email, '', img,  rol, '',id);
         localStorage.setItem('token', result.token);
-        this.activeuser.emit(true);
-        this.datauser.emit(this.usuario);
+        this.emitsession(true);
       }
       )
     );
@@ -98,7 +98,7 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem('token');
-    this.activeuser.emit(false);
+    this.emitsession(false);
     
   
   }
