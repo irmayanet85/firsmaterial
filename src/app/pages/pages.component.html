@@ -1,8 +1,9 @@
 <div class="full">
-
+    
     <app-diveresponsive (smolldivice) = "drawer.toggle()"></app-diveresponsive>    
     <header>
-        <app-menu   [user]="user"   (newclick)="drawer.toggle()" ></app-menu>
+        
+        <app-menu   (newclick)="drawer.toggle()" ></app-menu>
     </header>
     
         <mat-drawer-container class="example-container" autosize>

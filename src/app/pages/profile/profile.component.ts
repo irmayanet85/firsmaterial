@@ -26,7 +26,7 @@ export class ProfileComponent
   error : string = '';
   disabledbtn : boolean = false;
   
-  constructor(private servAuth: AuthService, private servprof : ProfileService, private imgserv: ImgService){
+  constructor(private servAuth: AuthService,  private imgserv: ImgService){
     this.user = this.servAuth.user;
     this.email.setValue(this.user.email);
     this.name.setValue(this.user.name);
@@ -39,31 +39,33 @@ export class ProfileComponent
     if (this.fGroupEditDataUser.valid == true){
       this.disabledbtn = true;
       const email:any = this.email!.value;
-      this.servprof.UpdateUser(this.name.value!, email)
+      this.servAuth.UpdateUser(this.name.value!, email)
       .subscribe(resul => {
         Swal.fire( 'Exito!','El usuario fue actualizado correctamente','success' )
        console.log('actualizado');
        this.disabledbtn = false;
-      },
-      (error)=> {
-        this.disabledbtn = false;
+      }
+      // ,
+      // error=> {
+      //   this.disabledbtn = false;
 
-        if (error.error.msg){
-         console.log('error');
-         Swal.fire({
-          title: 'Atencion!',
-          text: error.error.msg,
-          icon: 'warning',
-          confirmButtonText: 'ok'
-        })
-        }
-        else {
-          console.log(error);
-          Swal.fire({title: 'Error!',text: 'Upss ocurrio un error inesperado',icon: 'error', confirmButtonText: 'ok'
-          })
+      //   if (error.error.msg){
+      //    console.log('error');
+      //    Swal.fire({
+      //     title: 'Atencion!',
+      //     text: error.error.msg,
+      //     icon: 'warning',
+      //     confirmButtonText: 'ok'
+      //   })
+      //   }
+      //   else {
+      //     console.log(error);
+      //     Swal.fire({title: 'Error!',text: 'Upss ocurrio un error inesperado',icon: 'error', confirmButtonText: 'ok'
+      //     })
           
-        }
-      })
+      //   }
+      // }
+      )
     }
     
   } 

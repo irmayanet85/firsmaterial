@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../models/user.models';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services';
 
 @Component({
   selector: 'app-pages',
@@ -8,16 +8,11 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent {
+  
+  constructor(){
 
-  public user!: Usuario;
-
-  constructor (private authServ: AuthService) {
-    if (this.authServ){
-
-      this.user = this.authServ.user;
-    }
-
+    
   }
-
+  
 
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Usuario } from 'src/app/models/user.models';
 import { AuthService } from 'src/app/services';
 
@@ -10,17 +10,19 @@ import { AuthService } from 'src/app/services';
 })
 export class MenuComponent {
   @Output() newclick = new EventEmitter<string>();
-  @Input() public user!: Usuario;
-  //public user!: Usuario;
+  email: string = '';
+  rol: string = '';
+  active : boolean = false;
+ 
 
-  constructor (
-    //private authServ: AuthService
-    ){
-    // if (this.authServ){
+  constructor (private authServ: AuthService){
 
-    //   this.user = this.authServ.user;
-    // }
-
+    this.authServ.session.subscribe(data=> {
+      this.email = data.dataUser.email;
+      this.rol = data.dataUser.rol!;
+      this.active = data.status;
+      console.log('session menu');
+    })
   }
 
   toggle(){
@@ -28,5 +30,7 @@ export class MenuComponent {
     //console.log('me dieron click');
 
   }
+
+ 
 
 }

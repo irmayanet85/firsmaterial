@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentesModule } from '../component/componentes.module';
 import { AddEditUserComponent,AddEditHospitalComponent, AddEditDoctorsComponent, DoctorsComponent, HospitalsComponent, UsersComponent} from './maintenance';
+import { ConsultationsComponent } from './consultations/consultations.component';
 
 
 
@@ -26,7 +27,8 @@ import { AddEditUserComponent,AddEditHospitalComponent, AddEditDoctorsComponent,
     DashboardComponent,
     AddEditHospitalComponent,
     AddEditUserComponent,
-    AddEditDoctorsComponent
+    AddEditDoctorsComponent,
+    ConsultationsComponent
   ],
   imports: [
     CommonModule,

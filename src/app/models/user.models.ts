@@ -7,9 +7,17 @@ export class Usuario {
     public img? : string,
     public rol? : string,
     public google? : string,
-    public id? : string
+    public id? : string,
+   
  ){
 
+ }
+
+ setName(name:string){
+  this.name = name;
+ }
+ setEmail(email:string){
+  this.email = email;
  }
 
  getName(){

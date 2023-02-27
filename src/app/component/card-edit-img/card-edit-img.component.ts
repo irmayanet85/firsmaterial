@@ -16,7 +16,7 @@ export class CardEditImgComponent {
   public img! : File;
   public imgTemp! : any;
 
-  constructor(private servAuth: AuthService, private servprof : ProfileService, private imgserv: ImgService){
+  constructor(private servAuth: AuthService, private imgserv: ImgService){
    
   
 

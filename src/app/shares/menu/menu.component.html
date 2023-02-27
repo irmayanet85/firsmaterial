@@ -7,8 +7,13 @@
   </div>
   <span class="newstyle">Hospital Center</span>
   <span class="example-spacer"></span>
-   Welcom: {{user.email}}
-  <app-menu-submenu  ></app-menu-submenu>
+   <label *ngIf="active" >{{email}} : {{rol}}
+    
+  </label> 
+    
+   
+
+  <app-menu-submenu ></app-menu-submenu>
 
   
 
