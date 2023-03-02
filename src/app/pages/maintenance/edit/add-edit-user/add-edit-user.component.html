@@ -1,1 +1,54 @@
-<p>add-edit-user works!</p>
+<h1>Edit User</h1>
+<app-back></app-back>
+<div class="container">
+  <app-card-edit-img [refobj] = "user"></app-card-edit-img>
+ 
+    <mat-card class="card-edit">
+        <mat-card-header>
+            <mat-card-title>User Data</mat-card-title>
+            <mat-card-subtitle>Modify user's rol, if you wish.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content> 
+          <form [formGroup]="fGroupEditDataUser" class="formedit" (submit)="updateUser()">
+        
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>name</mat-label>
+                <input type="text" matInput [value]="user.name" placeholder="rol of user" readonly>
+              </mat-form-field>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>email</mat-label>
+                <input type="text" matInput [value]="user.email" placeholder="rol of user" readonly>
+              </mat-form-field>
+
+             <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Choose a rol</mat-label>
+                <mat-select [formControl]="rol" >
+                    <mat-option [value]='role.user'>user</mat-option>
+                    <mat-option [value]='role.admin'>admin</mat-option>
+                  </mat-select>
+               
+              </mat-form-field>
+             
+             
+    
+               
+                  
+    
+                
+                  <button id= "btnRegister" mat-raised-button color="primary" focus  [disabled]="disabledbtn" class="full-width">
+                      Update Rol
+                 </button>
+    
+                    
+                </form>
+              
+    
+          
+      </mat-card-content>
+      
+    </mat-card>
+    
+   
+  </div>
+  <app-back></app-back> 
+

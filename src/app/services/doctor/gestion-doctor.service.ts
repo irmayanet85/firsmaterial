@@ -58,7 +58,7 @@ export class GestionDoctorService {
       
     }
 
-    getDoctor(id: number): Observable<Doctor>{
+    getDoctor(id: string): Observable<Doctor>{
       
       const urlconexion = `${this.url}/medicos/${id}`;
       

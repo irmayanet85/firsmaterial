@@ -1,0 +1,25 @@
+<mat-card class="card-editimg">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Image Profile</mat-card-title>
+        <mat-card-subtitle>Change your avatar</mat-card-subtitle>
+    </mat-card-header>
+        
+
+    <mat-card-content >
+<ng-container *ngIf="refobj; else elseTemplate">
+  
+  <div class="imgcontainer"  >
+   
+   <img [src]="refobj.getURLImg()" 
+   class="img-circle" />
+  
+  </div> 
+</ng-container>
+<ng-template #elseTemplate>
+  <mat-spinner></mat-spinner>
+</ng-template> 
+    </mat-card-content>
+   
+  </mat-card>
+

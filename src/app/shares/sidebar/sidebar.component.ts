@@ -21,7 +21,7 @@ const notLogin = {
   children : [
     {
       name: "Medical consultations ", 
-      link: "consultation" 
+      link: "/dashboard/consultation" 
     },
     {
       name: "About Hospital", 
@@ -55,15 +55,15 @@ const AdminRol =   {
   icono : "warning",
   children : [
     {
-      name: "Hospitales", 
+      name: "Hospitals", 
       link: "/admin/hospitals" 
     },
     {
-      name: "Medicos", 
+      name: "Doctors", 
       link: "/admin//doctors" 
     },
      {
-       name: "Usuarios", 
+       name: "Patients", 
        link: "/admin/users" 
      }
   ]
@@ -85,11 +85,12 @@ export class SidebarComponent implements OnInit{
   dataSource = new MatTreeNestedDataSource<MenuNode>();
 
   constructor(private authServ : AuthService) {
+    //console.log('sidebar constructor');
 
     authServ.session.subscribe(session => {
       this.login = session.status; 
       this.user = session.dataUser;
-      console.log('subscribesession-sidebar', this.user, this.login);
+      //console.log('subscribesession-sidebar', this.user, this.login);
       this.updateMenuAccordingUserRol();
       this.dataSource.data = TREE_DATA;
     })
@@ -101,7 +102,7 @@ export class SidebarComponent implements OnInit{
     //console.log(TREE_DATA);
   }
   ngOnInit(): void {
-    console.log('sidebar');
+    //console.log('sidebar');
   }
 
   hasChild = (_: number, node: MenuNode) => !!node.children && node.children.length > 0;

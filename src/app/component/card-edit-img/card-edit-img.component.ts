@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Type } from '@angular/core';
+import { Doctor, Hospital } from 'src/app/models';
 import { Usuario } from 'src/app/models/user.models';
 import { AuthService, ImgService, ProfileService } from 'src/app/services';
 import Swal from 'sweetalert2';
@@ -45,14 +46,24 @@ export class CardEditImgComponent {
     
   }
 
+  typeObject(obj:any):string | null{
+    
+    if (this.refobj instanceof Hospital) return 'hospital';
+     
+      else if (this.refobj instanceof Doctor) return  'medico';
+    
+        else if (this.refobj instanceof Usuario) return 'user';
+
+           else return null
+
+  }
+
   updateImg(){
-    if (this.img){
-      // console.log('img valido');
-      // console.log(this.img);
-      this.imgserv.uploadImg(
-        'user',
-        this.refobj.id! ,
-        this.img)
+   const typeobject = this.typeObject(this.refobj);
+
+    if (this.img && typeobject!= ''){
+      
+     this.imgserv.uploadImg(  typeobject!, this.refobj.id! , this.img)
       .subscribe(() => {
         Swal.fire({
           title: 'Exito!',

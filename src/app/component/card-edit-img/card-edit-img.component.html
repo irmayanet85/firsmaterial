@@ -7,22 +7,22 @@
         
 
     <mat-card-content >
-<ng-container *ngIf="refobj; else elseTemplate">
-  
-  <div class="imgcontainer"  >
-   
-   <img [src]="refobj.getURLImg()" 
-   *ngIf="!imgTemp"
-   class="img-circle" />
-   <img [src]="imgTemp" 
-   *ngIf="imgTemp"
-   class="img-circle" />
-   
-  </div> 
-</ng-container>
-<ng-template #elseTemplate>
-  <mat-spinner></mat-spinner>
-</ng-template>
+    <ng-container *ngIf="refobj; else elseTemplate">
+      
+      <div class="imgcontainer"  >
+      
+      <img [src]="refobj.getURLImg()" 
+      *ngIf="!imgTemp"
+      class="img-circle" />
+      <img [src]="imgTemp" 
+      *ngIf="imgTemp"
+      class="img-circle" />
+      
+      </div> 
+    </ng-container>
+      <ng-template #elseTemplate>
+        <mat-spinner></mat-spinner>
+      </ng-template>
 
 
        <mat-form-field appearance="outline" class="full-width">

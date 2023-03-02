@@ -18,9 +18,12 @@ export class MenuComponent {
   constructor (private authServ: AuthService){
 
     this.authServ.session.subscribe(data=> {
-      this.email = data.dataUser.email;
-      this.rol = data.dataUser.rol!;
       this.active = data.status;
+      if(this.active == true){
+
+        this.email = data.dataUser.email;
+        this.rol = data.dataUser.rol!;
+      }
       console.log('session menu');
     })
   }

@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentesModule } from '../component/componentes.module';
 import { AddEditUserComponent,AddEditHospitalComponent, AddEditDoctorsComponent, DoctorsComponent, HospitalsComponent, UsersComponent} from './maintenance';
 import { ConsultationsComponent } from './consultations/consultations.component';
+import { ViewDoctorComponent } from './maintenance/view/view-doctor/view-doctor.component';
+import { ViewHospitalComponent } from './maintenance/view/view-hospital/view-hospital.component';
+import { ViewUserComponent } from './maintenance/view/view-user/view-user.component';
 
 
 
@@ -28,7 +31,10 @@ import { ConsultationsComponent } from './consultations/consultations.component'
     AddEditHospitalComponent,
     AddEditUserComponent,
     AddEditDoctorsComponent,
-    ConsultationsComponent
+    ConsultationsComponent,
+    ViewDoctorComponent,
+    ViewHospitalComponent,
+    ViewUserComponent
   ],
   imports: [
     CommonModule,

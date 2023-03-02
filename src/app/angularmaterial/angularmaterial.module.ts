@@ -24,6 +24,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSortModule} from '@angular/material/sort';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -31,6 +33,8 @@ import {MatSortModule} from '@angular/material/sort';
   declarations: [],
   imports: [
     CommonModule,
+    MatSnackBarModule,
+    MatSelectModule,
     MatSortModule,
     MatProgressSpinnerModule,
     MatSlideToggleModule,
@@ -61,6 +65,8 @@ import {MatSortModule} from '@angular/material/sort';
   ], 
   exports: [
     MatSlideToggleModule,
+    MatSelectModule,
+    MatSnackBarModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatGridListModule,

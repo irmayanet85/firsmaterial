@@ -5,6 +5,25 @@
 mat-button-toggle-group {
   margin-left: 12px;
 }
+.smoll-img-sidebar {
+  width: 30px;
+  height: 30px;
+  
+}
+.smoll-img-sidebar img {
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  /* border-radius: 5px; */
+}
+
+
+.title-sidebar {
+  display: flex;
+  margin-top: 5px;
+  
+}
+
 .custom-toolbar {
   height: 500px;
 }

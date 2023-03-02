@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from 'src/app/models/user.models';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
-import { ListHospital, SearchHospital } from '../../interfaces/searchGlobal';
+import { ListHospital, SearchHospital, IHospital } from '../../interfaces/searchGlobal';
 import { map, Observable } from 'rxjs';
 import { Hospital } from '../../models/hospital.models';
 import { IHopitalReduce, IUsuario } from 'src/app/interfaces/doctorlist.interface';
@@ -14,10 +14,10 @@ import { IHopitalReduce, IUsuario } from 'src/app/interfaces/doctorlist.interfac
 export class GestionHospitalService {
 
   private url:string = environment.urlApi;
-  private user! : Usuario;
+  //private user! : Usuario;
   
-  constructor(private httpclient: HttpClient, private servauth: AuthService ) {
-    this.user = servauth.user;
+  constructor(private httpclient: HttpClient ) {
+    //this.user = servauth.user;
    }
 
    get header(){
@@ -26,10 +26,21 @@ export class GestionHospitalService {
       header = header.set('x-token', token!);
       return {headers:header}
    }
+   page(from:number){
 
-   listHospital(from: number=0): Observable<ListHospital>{
-      
-      const urlconexion = `${this.url}/hospitales?from=${from}`;
+
+    if(from==0)
+    {
+       return 0;
+    }
+    else {
+     return from * 5 ;
+    }
+  }
+
+   listHospital(page: number=0): Observable<ListHospital>{
+    page = this.page(page);
+      const urlconexion = `${this.url}/hospitales?from=${page}`;
       
     
       return this.httpclient.get<ListHospital>(urlconexion, this.header)
@@ -87,9 +98,15 @@ export class GestionHospitalService {
 
     }
 
-    AddHospital(name:string){
+    AddHospital(name:string): Observable<Hospital>{
       const urlconexion = `${this.url}/hospitales`;
-      return this.httpclient.post(urlconexion, {name},this.header);
+      return this.httpclient.post<any>(urlconexion, {name},this.header).pipe (
+        map ( result => {
+          const h = result.hospital;
+          const hosp = new Hospital (h.name,h.img,h.usuario, h.id);
+          return hosp;
+        })
+      );
 
     }
 
@@ -125,7 +142,18 @@ export class GestionHospitalService {
       
     }
 
-   
+    getHospital(id: string): Observable<Hospital> | null{
+      
+      const urlconexion = `${this.url}/hospitales/${id}`;
+      
+      return this.httpclient.get<any>(urlconexion, this.header)
+        .pipe(   map( result => {
+          const h = result.hospital;
+          const hosp = new Hospital (h.name,h.img,h.usuario, h.id);
+          return hosp;
+        } ) );
+      
+    }
 
 
 

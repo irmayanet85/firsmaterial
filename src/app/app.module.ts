@@ -12,13 +12,15 @@ import { PagesModule } from './pages/pages.module';
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { UnauthorizedComponent } from './common-pages/unauthorized/unauthorized.component';
+import { ReducenamePipe } from './pipe/reducename.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NopagefoundComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    ReducenamePipe
   ],
   imports: [
     BrowserModule,

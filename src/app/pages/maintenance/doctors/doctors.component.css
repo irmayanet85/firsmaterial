@@ -7,28 +7,8 @@ table {
     width: 100%;
   }
   
-  td, th {
-    width: 20%;
+  /* td{
+    height: 40%;
    
-  }
-
-  .avatar {
-    border-radius: 100%;
-    width: 75px;
-}
-
-.cursor {
-    cursor: pointer;
-}
-  .actions {
-      /* display: flex;
-      flex-direction: row; */
-     /* justify-content: space-between; 
-    gap: 10px;  */
-      
-  }
-  .actions button {
-    /* font-size: 0.5rem;
-    height: fit-content;
-    width: max-content; */
-  }
+  }  */
+ 

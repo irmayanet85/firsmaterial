@@ -8,13 +8,14 @@ import { AuthGuard } from '../guard/auth.guard';
 import { AddEditUserComponent,AddEditHospitalComponent, AddEditDoctorsComponent, DoctorsComponent, HospitalsComponent, UsersComponent} from './maintenance';
 
 
+
 const childRoutesadmin : Routes = [
   { path: 'users', component: UsersComponent , data: {title: 'Gestion Usuarios'}},
   { path: 'hospitals', component: HospitalsComponent ,  data: {title: 'Gestion de Hospitales'}},
   { path: 'doctors', component: DoctorsComponent ,  data: {title: 'Gestion de doctores'}},
-  { path: 'edit-user', component:  AddEditUserComponent, data: {title: 'Edit Usuarios'}},
-  { path: 'edit-hospital', component: AddEditHospitalComponent ,  data: {title: 'Edit Hospitales'}},
   { path: 'edit-doctor/:id', component: AddEditDoctorsComponent ,  data: {title: 'Edit Doctores'}},
+  { path: 'edit-hospital/:id', component: AddEditHospitalComponent ,  data: {title: 'Edit Hospital'}},
+  { path: 'edit-user/:id', component: AddEditUserComponent ,  data: {title: 'Edit User'}},
 ]
 
 

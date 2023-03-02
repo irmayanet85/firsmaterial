@@ -4,23 +4,13 @@ import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MyErrorStateMatcher } from 'src/app/auth/login/login.component';
-import { Doctor } from 'src/app/models/doctor.models';
-import { Hospital } from 'src/app/models/hospital.models';
-import { GestionDoctorService } from 'src/app/services/doctor/gestion-doctor.service';
 import Swal from 'sweetalert2';
 import { map, Observable, startWith } from 'rxjs';
 
+import { Doctor } from 'src/app/models/doctor.models';
+import { IHopitalReduce } from 'src/app/interfaces';
+import { GestionDoctorService, GestionHospitalService } from 'src/app/services';
 
-// 
-// 
-// import {FormControl} from '@angular/forms';
-// 
-// 
-// import {Observable} from 'rxjs';
-// 
-import { GestionHospitalService } from '../../../../services/hospital/gestion-hospital.service';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { IHopitalReduce } from '../../../../interfaces/doctorlist.interface';
 
 
 @Component({
@@ -31,7 +21,8 @@ import { IHopitalReduce } from '../../../../interfaces/doctorlist.interface';
 export class AddEditDoctorsComponent implements OnInit{
 
   public doctor! : Doctor;
-  
+  update: boolean = true; 
+  id:string = '';
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
  
@@ -68,30 +59,51 @@ export class AddEditDoctorsComponent implements OnInit{
    servgestHospital.listArrayHospital().subscribe (result => {
     this.allHospitals = result;
     console.log('all hospitals',this.allHospitals);
+    this.id = "";
+    this.activeroute.params.subscribe(
+      param=> {
+        this.id = param['id'];
+        if (this.id == 'new')
+        { 
+          this.filteredHospital = this.hospitalsCtrl.valueChanges.pipe(
+              
+            startWith(null),
+            map((hospital: string | null) => (hospital ? this._filter(hospital) : this.allHospitals)),
+          );  
+
+          
+        }
+        else {
+          this.loadDoctor();
+        }
+
+    }
+      
+    );
    }, error => {
     console.log('can not obtain the list of all hospitals');
    });
 
    //load id of doctor
 
-  let id:number = 0;
-  this.activeroute.params.subscribe(
-    param=>{
-      id = param['id'];
-      console.log('parametro',
-      param['id']);
-    }
-  );
+    
+
+ 
+
+  
+  
+  
+  } 
+loadDoctor(){
   //load doctor
-  this.servgestDoctor.getDoctor(id).subscribe(result => {
-    if (result){
+  this.servgestDoctor.getDoctor(this.id).subscribe(result => {
+    
 
       this.doctor= result;
       this.name.setValue(this.doctor.name);
-      //console.log('doctor', this.doctor);
-        //load hospital predefine to the doctor
-      if(this.doctor.hospitales){
-  
+      
+      if(this.doctor.hospitales?.length! > 0){
+        console.log('loco');
         this.hospitals = this.doctor.hospitales! ;
         this.removeOnAllHospitalbeforeAsigned();
       }
@@ -101,24 +113,20 @@ export class AddEditDoctorsComponent implements OnInit{
         map((hospital: string | null) => (hospital ? this._filter(hospital) : this.allHospitals)),
       );
        
-    //console.log('lista de hospitales asociados', this.hospitals )
-    }
-    else{
-      this.route.navigate(['./error']);
-    }
+ 
+    
+    
   }, 
   error => {
-    console.log('ocurrio un error');
-    this.route.navigate(['./error']);
+    
+    if (error.error.msg){
+      this.error = error.error.msg;
+    }
+    else {
+      console.log('ocurrio un error', error);
+    }
   });
-
- 
-
-  
-  
-  
-  } 
-
+}
   removeOnAllHospitalbeforeAsigned(){
     if(this.hospitals.length > 0){
        this.hospitals.forEach(element => {
@@ -226,6 +234,9 @@ export class AddEditDoctorsComponent implements OnInit{
     }
     
   } 
+  refresh(): void {
+    window.location.reload();
+}
   
   
 

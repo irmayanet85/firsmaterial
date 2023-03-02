@@ -7,6 +7,53 @@ body {
     
 
 }
+.margin-in-section {
+  
+}
+
+.section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+
+td {
+  height: 100px;
+}
+
+.th-actions {
+  width: 15%;
+ 
+}
+.th-list {
+  width: 25%;
+}
+.th-img {
+  width: 10%;
+}
+.th-name {
+  width: 18%;
+}
+.back {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.error {
+  border: 1px solid red;
+  background-color: rgb(229, 134, 134);
+ 
+  font-weight: 400;
+}
+.error mat-icon {
+  color: rgb(155, 24, 24);
+  font-weight: 900;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+}
 
 .newstyle {
     font-family: 'Tangerine', serif;
@@ -24,4 +71,9 @@ body {
     font-size: large;
     margin-top: 8px;
     margin-bottom: 8px;
+  }
+  .font-primary {
+    color: #673ab7;
+    font-size: medium;
+    align-self: center;
   }

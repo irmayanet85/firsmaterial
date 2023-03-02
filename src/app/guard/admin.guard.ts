@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../services';
 
@@ -13,24 +13,63 @@ export class AdminGuard implements CanActivate, CanLoad {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean >  {
       console.log('AdminGuard Can Active');
-      if (this.auth.user.rol == environment.role.admin) {
-        return of(true);
-      } else {
-        this.ruta.navigate(['./forbidden'])
-        return of(false)
-      }
+    return this.auth.ValidateAuthAndrenewToken()
+      .pipe(
+        tap(result=>{
+          if(result == true){
+
+            if (this.auth.user.rol == environment.role.admin) {
+              return of(true);
+            } 
+            else {
+              this.ruta.navigate(['./forbidden'])
+              return of(false);
+            }
+            
+            
+          }
+          else {
+
+            this.ruta.navigate(['./login'])
+            return of(false);
+          }
+          
+        })
+        );
+
+
+
               
 
   }
   canLoad(route: Route,segments: UrlSegment[]): Observable<boolean>  | boolean  {
     console.log('AdminGuard Can Load');
-      if (this.auth.user.rol == environment.role.admin) {
-        return of(true);
-      } 
-      else {
-        this.ruta.navigate(['./forbidden'])
-        return of(false)
-      }
+    return this.auth.ValidateAuthAndrenewToken()
+      .pipe(
+        tap(result=>{
+          if(result == true){
+
+            if (this.auth.user.rol == environment.role.admin) {
+              return of(true);
+            } 
+            else {
+              this.ruta.navigate(['./forbidden'])
+              return of(false);
+            }
+            
+            
+          }
+          else {
+
+            this.ruta.navigate(['./login'])
+            return of(false);
+          }
+          
+        })
+        );
+
+
+
     
   }
 }

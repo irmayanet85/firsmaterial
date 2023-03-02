@@ -1,6 +1,7 @@
 .avatar {
     border-radius: 100%;
     width: 75px;
+    height: 75px;
 }
 
 .cursor {

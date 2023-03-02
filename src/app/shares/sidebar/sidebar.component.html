@@ -1,5 +1,15 @@
-<label  *ngIf="user" >{{user.email}} 
-  {{user.name}}</label>
+<div class="title-sidebar">
+
+  <button mat-icon-button  aria-label="icon-button with a menu">
+    <div class="smoll-img-sidebar">
+    <img src={{user.getURLImg()}} alt="image of anonimus user">
+  </div>
+  </button>
+  <span  *ngIf="user"  class="font-primary" >
+    {{user.email}} 
+  </span>
+</div>
+
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
   <!-- This is the tree node template for leaf nodes -->
   <!-- There is inline padding applied to this node using styles.

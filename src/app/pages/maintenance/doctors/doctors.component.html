@@ -3,7 +3,16 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
 </mat-form-field> -->
 
+<h1>List of Doctors</h1>
+<div class="title">
 
+  <app-back></app-back>
+
+  <button mat-raised-button color="primary"  class="back"   routerLink="/admin/edit-doctor/new" >
+    <mat-icon>add</mat-icon>
+    New Dactor
+  </button>
+</div>
   <div class="mat-elevation-z8">
     <ng-container *ngIf="isloading; else elseTemplate">
 
@@ -12,11 +21,12 @@
       
     </ng-container>
     <ng-template #elseTemplate>
+      
       <table mat-table [dataSource]="data" class="example-table">
     
         <!-- ID Column -->
         <ng-container matColumnDef="img">
-          <th mat-header-cell *matHeaderCellDef > Foto </th>
+          <th mat-header-cell *matHeaderCellDef class="th-img"> Foto </th>
           <td mat-cell *matCellDef="let row"> 
               <app-cargar-img [url]="row.getURLImg()"></app-cargar-img>
               
@@ -24,42 +34,56 @@
         </ng-container>
     
         <!-- Progress Column -->
-        <ng-container matColumnDef="name" class="name">
-          <th mat-header-cell *matHeaderCellDef > Name </th>
-          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        <ng-container matColumnDef="name" >
+          <th mat-header-cell *matHeaderCellDef class="th-name" > Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.name | slice:0:20 }}{{(row.name.length > 20)? '...':'' }} </td>
         </ng-container>
     
         <!-- Name Column -->
-        <ng-container matColumnDef="usuario" class="username">
-          <th mat-header-cell *matHeaderCellDef > register by </th>
-          <td mat-cell *matCellDef="let row"> {{row.usuario.name}} </td>
+        <ng-container matColumnDef="usuario" >
+          <th mat-header-cell *matHeaderCellDef class="th-name" > register by </th>
+          <td mat-cell *matCellDef="let row"> {{row.usuario.email | slice:0:20 }}{{(row.usuario.email.length > 20)? '...':'' }} </td>
+          
         </ng-container>
     
         <!-- Fruit Column -->
-        <ng-container matColumnDef="hospitales" class="list">
-          <th mat-header-cell *matHeaderCellDef > Hospital asociated </th>
+        <ng-container matColumnDef="hospitales" >
+          <th mat-header-cell *matHeaderCellDef class="th-list" > Hospital asociated </th>
           <td mat-cell *matCellDef="let row"> 
 
+                <span *ngFor="let hospital of row.hospitales; let i=index">
+                  <div  *ngIf="i < 3" >
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="check_circle" color="primary">
 
-            <mat-list role="list">
-              <mat-list-item role="listitem" *ngFor="let hospital of row.hospitales">
-                <mat-icon matListItemIcon>done</mat-icon>
-                {{hospital.name}} 
-              </mat-list-item>
-            
-            </mat-list>
-    
+                    </mat-icon>
+                    {{hospital.name | titlecase}}
+                  </div>
+                  <div  *ngIf="i == 3">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="check_circle" color="primary">
+
+                    </mat-icon>
+                      . . . of ({{row.hospitales.length}})
+                  </div>
+                </span>
+               
+
+                
+              
           </td>
         </ng-container>
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef class="actions"> Actions</th>
-          <td mat-cell *matCellDef="let row" class = "actions">  
+          <th mat-header-cell *matHeaderCellDef  class="th-actions"> Actions</th>
+          <td mat-cell *matCellDef="let row" >
+            <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon "
+            matTooltip="View hospital" matTooltipPosition= "right" [routerLink]="['/user/view-doctor', row.id]">
+                <mat-icon>visibility</mat-icon>
+            </button>  
               <button mat-icon-button color="primary" aria-label="Example icon button with a menu icon "
               matTooltip="Edit doctor" matTooltipPosition= "right" [routerLink]="['../edit-doctor', row.id]">
                   <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon" 
-                matTooltip="Delete doctor" matTooltipPosition= "right">
+                matTooltip="Delete doctor" matTooltipPosition= "right" (click)="deleteDoctor(row.id)">
                   <mat-icon>delete</mat-icon>
                 </button>
           </td>
@@ -79,6 +103,8 @@
     <mat-paginator  #paginator [length]="resultsLength" [pageSizeOptions]="pageSizes"  aria-label="Select page of users"></mat-paginator> 
     
   </div>
+
+  <app-back></app-back>
   
 
 

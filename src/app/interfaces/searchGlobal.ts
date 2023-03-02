@@ -26,3 +26,10 @@ export interface ListDoctors {
     list: Doctor[],
     total: number
 }
+
+export interface IHospital {
+    name: string,
+    usuario: string,
+    img: string,
+    id: string
+}

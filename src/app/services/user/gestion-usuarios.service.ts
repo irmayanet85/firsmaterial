@@ -4,7 +4,7 @@ import { ListUsers } from 'src/app/interfaces/searchGlobal';
 import { Usuario } from 'src/app/models/user.models';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { SearchUser } from '../../interfaces/searchGlobal';
 
 
@@ -35,6 +35,19 @@ export class GestionUsuariosService {
       let header= new HttpHeaders();
       header = header.set('x-token', token!);
       return {headers:header}
+   }
+
+   getUser(id:string): Observable<Usuario>{
+    const urlconexion = `${this.url}/usuarios/${id}`;
+      
+    return this.httpclient.get<any>(urlconexion, this.header)
+      .pipe(   map( result => {
+        const u = result.data;
+        const user = new Usuario (u.name, u.email, '', u.img, u.rol, u.google, u.id);
+        return user;
+      } ) );
+    
+
    }
 
    listUsers(from: number=0){

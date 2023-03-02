@@ -13,7 +13,9 @@ export class AuthService {
   private usuario!: Usuario;
   private url:string = environment.urlApi;
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private httpclient: HttpClient) {
+
+   }
   
   get user ()
   {
@@ -78,7 +80,10 @@ export class AuthService {
       );
 
     }
-    else return of(false);
+    else {
+      this.emitsession(false);
+      return of(false);
+    }
   }
 
   login(email: string, password: string ){

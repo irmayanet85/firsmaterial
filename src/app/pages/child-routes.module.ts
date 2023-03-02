@@ -12,8 +12,6 @@ import { ConsultationsComponent } from './consultations/consultations.component'
 const childRoutes : Routes = [
   { path: '', component: DashboardComponent , data: {title: 'Dashboard'}},
   { path: 'consultation', component: ConsultationsComponent , data: {title: 'Consultation'}},
-   { path: 'account', component: AccountSettingComponent , data: {title: 'Account setting'}},
-  { path: 'profile', component: ProfileComponent, canActivate : [AuthGuard], data: {title: 'Perfil'}},
 
 ]
 
