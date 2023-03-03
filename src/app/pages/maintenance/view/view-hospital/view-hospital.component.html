@@ -9,9 +9,9 @@
     {{error}}
 </div>
 
-<div class="container" *ngIf="!error">
+<div class="container" *ngIf="hospital">
 
-  <app-showimg [refobj] = "hospital"   *ngIf="hospital"></app-showimg>
+  <app-showimg [refobj] = "hospital" ></app-showimg>
  
     <mat-card class="card-edit" >
         <mat-card-header>

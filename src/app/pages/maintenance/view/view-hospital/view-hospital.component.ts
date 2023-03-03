@@ -14,7 +14,21 @@ export class ViewHospitalComponent {
   id: string = '';
   constructor(private gesthosp : GestionHospitalService, private activeroute: ActivatedRoute, private route: Router){
     //load id of hospital
-    this.loadhospital();
+    
+      this.id = "";
+      this.activeroute.params.subscribe(
+        param=> {
+          this.id = param['id'];
+          if (this.id)
+          { 
+            
+            this.loadhospital();
+          }
+  
+      }
+        
+      );
+     
 
   
    }

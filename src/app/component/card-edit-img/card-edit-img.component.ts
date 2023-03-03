@@ -93,6 +93,14 @@ export class CardEditImgComponent {
         }
       })
     }
+    else {
+      Swal.fire({
+        title: 'Atention!',
+        text: 'Debe seleccionar una imagen',
+        icon: 'warning',
+        confirmButtonText: 'continuar'
+      })
+    }
     
   } 
   

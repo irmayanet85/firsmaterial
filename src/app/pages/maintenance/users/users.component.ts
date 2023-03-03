@@ -3,8 +3,9 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { catchError, startWith, switchMap, of as observableOf, map } from 'rxjs';
+import { ISession } from 'src/app/interfaces';
 import { Usuario } from 'src/app/models/user.models';
-import { GestionUsuariosService } from 'src/app/services';
+import { AuthService, GestionUsuariosService } from 'src/app/services';
 import Swal from 'sweetalert2';
 import { SearchUser } from '../../../interfaces/searchGlobal';
 
@@ -17,6 +18,7 @@ export class UsersComponent implements AfterViewInit  {
   displayedColumns: string[] = [ 'img','name', 'email', 'rol', 'id'];
   resultsLength: number = 0;
   isloading = true;
+  private user!: Usuario;
   data = new MatTableDataSource <Usuario>();
   @ViewChild('paginator') paginator!: MatPaginator;
   //@ViewChild(MatSort) sort!: MatSort;
@@ -25,7 +27,8 @@ export class UsersComponent implements AfterViewInit  {
 
   servuser!: GestionUsuariosService | null;
 
-  constructor( private _httpClient: HttpClient) {
+  constructor( private _httpClient: HttpClient, private servauth: AuthService) {
+    this.user =  servauth.user;
   }
 
   ngAfterViewInit() {
@@ -64,42 +67,56 @@ export class UsersComponent implements AfterViewInit  {
 
 deleteUser(id:string){
 
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      
-      this.servuser!.deleteUser(id).subscribe (
-        ()=> {
-          Swal.fire(
-            'Deleted!',
-            'The doctor has been deleted.',
-            'success'
-          )
-          this.loadUser();
-  
-        },
-        error => {
-          if (error.error.msg){
-            Swal.fire({
-             title: 'Atencion!',
-             text: error.error.msg,
-             icon: 'warning',
-             confirmButtonText: 'ok'
-           })
-           }
+  if (this.user.id != id){
 
-        }
-      )
-     
-    }
-  })
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+       
+        
+        this.servuser!.deleteUser(id).subscribe (
+          ()=> {
+            Swal.fire(
+              'Deleted!',
+              'The doctor has been deleted.',
+              'success'
+            )
+            this.loadUser();
+    
+          },
+          error => {
+            if (error.error.msg){
+              Swal.fire({
+               title: 'Atencion!',
+               text: error.error.msg,
+               icon: 'warning',
+               confirmButtonText: 'ok'
+             })
+             }
+  
+          }
+        )
+       
+      }
+    })
+  }
+  else {
+    Swal.fire({
+      title: 'Atention!',
+      text: 'No puede borrarse a si mismo',
+      icon: 'warning',
+      confirmButtonText: 'continuar'
+    })
+  }
+
 
   
 }

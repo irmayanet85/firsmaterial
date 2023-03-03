@@ -1,1 +1,48 @@
-<p>view-doctor works!</p>
+<h1>View Doctors</h1>
+<div class="title">
+  <app-back></app-back>
+  
+</div>
+
+<div  *ngIf="error"  class="error">
+  <mat-icon>warning</mat-icon>
+  {{error}}
+</div>
+
+<div class="container"  *ngIf="doctor">
+  <app-showimg [refobj] = "doctor"  ></app-showimg>
+ 
+    <mat-card class="card-edit" >
+        <mat-card-header>
+            <mat-card-title>Doctor Data</mat-card-title>
+        </mat-card-header>
+        <mat-card-content> 
+        
+             <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput  placeholder="Name and Last Name" [value]="doctor.name">
+              </mat-form-field>
+               <ul class="full-width">
+                <li  *ngFor="let hospital of doctor.hospitales" >
+                          <mat-icon>done</mat-icon> {{hospital.name}}
+                </li>
+
+               </ul>
+
+              <!-- <mat-form-field class="example-chip-list" appearance="outline"  class="full-width">
+                <mat-label>Hospital asociated</mat-label>
+                  lista de hospitales asociados
+              </mat-form-field> -->
+             
+    
+       
+              
+    
+          
+      </mat-card-content>
+      
+    </mat-card>
+    
+   
+    <app-back></app-back>
+</div>

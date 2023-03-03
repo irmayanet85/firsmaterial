@@ -69,33 +69,52 @@ export class AddEditHospitalComponent {
 
 
   updateHospital(){
-    if(this.fGroupEditDataHospital.valid){
-      this.disabledbtn = true;
-      this.gesthosp.editHospital(this.hospital.id!, this.name.value!).subscribe(
-        ()=> {
-          Swal.fire( 'Exito!','El hospital fue actualizado correctamente','success' )
-          this.disabledbtn = false;
+    if (this.fGroupEditDataHospital.touched == true){
 
-        }, 
-        error => {
-          this.disabledbtn = false;
-          if (error.error.msg){
-           Swal.fire({
-            title: 'Atencion!',
-            text: error.error.msg,
-            icon: 'warning',
-            confirmButtonText: 'ok'
-          })
-          }
-          else {
-            console.log(error);
-            Swal.fire({title: 'Error!',text: 'Upss ocurrio un error inesperado',icon: 'error', confirmButtonText: 'ok'
+      if(this.fGroupEditDataHospital.valid ){
+        this.disabledbtn = true;
+        this.gesthosp.editHospital(this.hospital.id!, this.name.value!).subscribe(
+          ()=> {
+            Swal.fire( 'Exito!','El hospital fue actualizado correctamente','success' )
+            this.disabledbtn = false;
+  
+          }, 
+          error => {
+            this.disabledbtn = false;
+            if (error.error.msg){
+             Swal.fire({
+              title: 'Atencion!',
+              text: error.error.msg,
+              icon: 'warning',
+              confirmButtonText: 'ok'
             })
-            
+            }
+            else {
+              console.log(error);
+              Swal.fire({title: 'Error!',text: 'Upss ocurrio un error inesperado',icon: 'error', confirmButtonText: 'ok'
+              })
+              
+            }
+  
           }
-
-        }
-      )
+        )
+      }
+      else {
+        Swal.fire({
+          title: 'Atention!',
+          text: 'Debe completar los campos',
+          icon: 'warning',
+          confirmButtonText: 'continuar'
+        })
+      }
+    }
+    else {
+      Swal.fire({
+        title: 'Atention!',
+        text: 'Antes de actualizar debe modificar algun dato.',
+        icon: 'warning',
+        confirmButtonText: 'continuar'
+      })
     }
   }
 

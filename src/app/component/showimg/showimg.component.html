@@ -7,18 +7,20 @@
         
 
     <mat-card-content >
-<ng-container *ngIf="refobj; else elseTemplate">
-  
-  <div class="imgcontainer"  >
-   
-   <img [src]="refobj.getURLImg()" 
-   class="img-circle" />
-  
-  </div> 
-</ng-container>
-<ng-template #elseTemplate>
-  <mat-spinner></mat-spinner>
-</ng-template> 
+    <ng-container *ngIf="refobj; else elseTemplate">
+    
+    <div class="imgcontainer"  >
+        
+
+            <img [src]="refobj.getURLImg()" 
+            class="img-circle" />
+        
+        
+    </div> 
+    </ng-container>
+    <ng-template #elseTemplate>
+    <mat-spinner></mat-spinner>
+    </ng-template> 
     </mat-card-content>
    
   </mat-card>

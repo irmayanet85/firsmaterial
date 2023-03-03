@@ -198,7 +198,7 @@ loadDoctor(){
 
   updateDoctor(){
     console.log('actualizando')
-    if (this.fGroupEditDataDoctor.valid == true){
+    if (this.fGroupEditDataDoctor.valid == true && this.fGroupEditDataDoctor.touched == true){
       this.disabledbtn = true;
       let arrayhospital:string[]=[];
       this.hospitals.map(
@@ -230,6 +230,14 @@ loadDoctor(){
           })
           
         }
+      })
+    }
+    else {
+      Swal.fire({
+        title: 'Atention!',
+        text: 'Aun no ha modificado ningun campo',
+        icon: 'warning',
+        confirmButtonText: 'continuar'
       })
     }
     
